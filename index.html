@@ -42,7 +42,42 @@
     }
     blockquote.twitter-tweet {
       margin: 0 auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
     }
+    
+    blockquote.twitter-tweet.loaded {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Twitter placeholder */
+    .twitter-placeholder {
+      width: 560px;
+      height: 560px;
+      max-width: 90%;
+      margin: 0 auto;
+      border: 1px solid #333;
+      border-radius: 12px;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 1rem;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.9; }
+    }
+    
+    .twitter-placeholder.hidden {
+      display: none;
+    }
+    
     footer {
       position: absolute;
       bottom: 1rem;
@@ -77,6 +112,10 @@
         transform: scale(0.8);
         margin: 0 auto -1rem auto;
       }
+      .twitter-placeholder {
+        width: 90%;
+        height: 448px; /* 560 * 0.8 = 448 */
+      }
       p {
         margin: 0.5rem auto;
         font-size: 0.9rem;
@@ -100,12 +139,20 @@
         transform: scale(0.7);
         margin: 0 auto -2rem auto;
       }
+      .twitter-placeholder {
+        width: 90%;
+        height: 392px; /* 560 * 0.7 = 392 */
+      }
     }
   </style>
 </head>
 <body>
   <h1><span style="color: red; font-weight: bold;">PR</span><span style="color: yellow; font-weight: bold;">AX</span><span style="color: white; font-weight: bold;">IT</span></h1>
 
+  <!-- Twitter placeholder -->
+  <div id="twitter-placeholder" class="twitter-placeholder">
+    Načítá se tweet...
+  </div>
   
   <blockquote class="twitter-tweet" data-media-max-width="560">
     <p lang="en" dir="ltr">
@@ -130,5 +177,43 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Show Twitter widget and hide placeholder when loaded
+    function showTwitterWidget() {
+      const placeholder = document.getElementById('twitter-placeholder');
+      const twitterWidget = document.querySelector('.twitter-tweet');
+      
+      if (placeholder) {
+        placeholder.classList.add('hidden');
+      }
+      if (twitterWidget) {
+        twitterWidget.classList.add('loaded');
+      }
+    }
+    
+    // Wait for Twitter widget to load
+    window.addEventListener('load', function() {
+      // Try to use Twitter's official event
+      if (typeof window.twttr !== 'undefined') {
+        window.twttr.events.bind('rendered', showTwitterWidget);
+      } else {
+        // Wait for twttr to be available
+        let attempts = 0;
+        const checkInterval = setInterval(function() {
+          attempts++;
+          if (typeof window.twttr !== 'undefined') {
+            window.twttr.events.bind('rendered', showTwitterWidget);
+            clearInterval(checkInterval);
+          } else if (attempts > 20) { // Stop after 10 seconds
+            // Fallback: show anyway
+            showTwitterWidget();
+            clearInterval(checkInterval);
+          }
+        }, 500);
+      }
+    });
+    
+    // Fallback: show after reasonable time if all else fails
+    setTimeout(showTwitterWidget, 8000);
   </script>
 </body>
