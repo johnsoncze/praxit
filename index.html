@@ -18,6 +18,8 @@
       height: 100vh;
       margin: 0;
       text-align: center;
+      padding: 1rem;
+      box-sizing: border-box;
     }
     h1 {
       font-size: 3rem;
@@ -28,6 +30,15 @@
       color: #aaa;
       max-width: 600px;
       margin: 0 auto 2rem;
+    }
+    p.slogan {
+      color: #fafafa;
+      font-size: 1.2rem;
+      font-weight: 500;
+      max-width: 800px;
+      margin: 2rem auto 1rem;
+      line-height: 1.4;
+      font-style: italic;
     }
     blockquote.twitter-tweet {
       margin: 0 auto;
@@ -45,11 +56,57 @@
     a:hover {
       text-decoration: underline;
     }
+    
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      body {
+        height: 100vh;
+        justify-content: space-between;
+        padding: 0.5rem;
+      }
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      p.slogan {
+        font-size: 1rem;
+        margin: 0.5rem auto 1rem;
+        max-width: 90%;
+      }
+      blockquote.twitter-tweet {
+        transform: scale(0.8);
+        margin: 0 auto -1rem auto;
+      }
+      p {
+        margin: 0.5rem auto;
+        font-size: 0.9rem;
+      }
+      footer {
+        position: static;
+        margin-top: auto;
+        font-size: 0.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      p.slogan {
+        font-size: 0.9rem;
+        margin: 0.5rem auto 0.5rem;
+      }
+      blockquote.twitter-tweet {
+        transform: scale(0.7);
+        margin: 0 auto -2rem auto;
+      }
+    }
   </style>
 </head>
 <body>
   <h1><span style="color: red; font-weight: bold;">PR</span><span style="color: yellow; font-weight: bold;">AX</span><span style="color: white; font-weight: bold;">IT</span></h1>
 
+  
   <blockquote class="twitter-tweet" data-media-max-width="560">
     <p lang="en" dir="ltr">
       Lets gooooooo <a href="https://t.co/grhZRYiB49">pic.twitter.com/grhZRYiB49</a>
@@ -59,6 +116,13 @@
     </a>
   </blockquote>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <p class="slogan">
+    Proč vystupovat z EU, když můžeme vystoupit z ČR?<br />
+    Proč být Švýcarsko střední Evropy, když můžeme být Monako střední Evropy.
+  </p>
+  <p style="margin-bottom: 4rem;">
+    <a href="https://herohero.co/udalostiludkastanka" target="_blank">herohero.co/udalostiludkastanka</a>
+  </p>
 
   <footer>
     © <span id="year"></span> Praxit
