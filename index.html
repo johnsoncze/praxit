@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praxit</title>
+  <meta name="description" content="Praxit — moderní přístup k digitalizaci procesů, integracím a automatizaci.">
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/7/7e/Globe_icon.svg">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0d0d0d;
+      color: #fafafa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+    p {
+      color: #aaa;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    blockquote.twitter-tweet {
+      margin: 0 auto;
+    }
+    footer {
+      position: absolute;
+      bottom: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    a {
+      color: #1da1f2;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Praxit</h1>
+
+  <blockquote class="twitter-tweet" data-media-max-width="560">
+    <p lang="en" dir="ltr">
+      Lets gooooooo <a href="https://t.co/grhZRYiB49">pic.twitter.com/grhZRYiB49</a>
+    </p>&mdash; Ludek Stanek (@LudekStanek)
+    <a href="https://twitter.com/LudekStanek/status/1976586385361424728?ref_src=twsrc%5Etfw">
+      October 10, 2025
+    </a>
+  </blockquote>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <footer>
+    © <span id="year"></span> Praxit
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
